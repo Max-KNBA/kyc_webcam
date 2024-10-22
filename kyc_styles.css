@@ -1,0 +1,164 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #28a745;
+    --text-color: #333;
+    --border-color: #ccc;
+    --button-radius: 5px;
+    --transition-duration: 0.3s;
+    --button-padding: 15px 30px;
+    --button-font-size: 16px;
+    --background-gradient: linear-gradient(135deg, #e0e0e0, #f9f9f9);
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    background-color: #f0f2f5; /* Set a light background color for the body */
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between; /* Use space-between to distribute space */
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    gap: 20px; /* Add gap between sections */
+}
+
+.video-section {
+    flex: 0 0 45%; /* Set a fixed width for the video section */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-gradient); /* Add gradient background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    padding: 20px;
+}
+
+.rotated-video {
+    display: block;
+    transform: rotate(90deg);
+    width: 100%; /* Set width to 100% to fill the container */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 100vh; /* Ensure it doesn't exceed the viewport height */
+    border-radius: 10px;
+    /* Remove grayscale filter */
+}
+
+.docs-section {
+    flex: 1; /* Allow the docs section to take the remaining space */
+    display: flex;
+    flex-direction: column;
+    background: var(--background-gradient); /* Add gradient background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    padding: 20px;
+    gap: 10px; /* Add gap between blocks */
+}
+
+.doc {
+    flex: 0 0 40%; /* Set each doc to take 40% of the height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff; /* Set a white background for contrast */
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.doc-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.doc-header button {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow to buttons */
+}
+
+.doc-header button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.doc-content {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: flex-start; /* Align items to the top */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping */
+    padding-bottom: 10px; /* Add padding to avoid scrollbar overlap */
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+    -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
+    height: 300px; /* Fixed height for the thumbnail area */
+    width: calc(5 * 180px + 2 * 10px); /* Width for 3 thumbnails + gaps */
+    max-width: 100%; /* Ensure it doesn't exceed the container's width */
+    border: 1px solid var(--border-color); /* Optional: Add border for clarity */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.doc canvas {
+    width: 180px; /* Increase width by 1.5 times */
+    height: 270px; /* Increase height by 1.5 times */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to canvases */
+    cursor: pointer;
+    transition: transform var(--transition-duration);
+}
+
+.doc canvas:hover {
+    transform: scale(1.1);
+}
+
+.upload {
+    flex: 0 0 10%; /* Set upload section to take 10% of the height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff; /* Set a white background for contrast */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    padding: 10px;
+}
+
+.upload button {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-duration);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow to buttons */
+}
+
+.upload button:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .preview, .docs {
+        flex: 1;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+}

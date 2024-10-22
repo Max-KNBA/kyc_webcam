@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Capture</title>
+    <link rel="stylesheet" href="kyc_styles.css">
+    <!-- 引入 React 和 ReactDOM -->
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+</head>
+<body>
+    <div class="container">
+        <div class="video-section">
+            <video id="webcam" autoplay playsinline class="rotated-video"></video>
+        </div>
+        <div class="docs-section">
+            <div id="doc1" class="doc">
+                <div class="doc-header">
+                    Doc1 Preview
+                    <button onclick="capture('doc1')">Capture to Doc1</button>
+                </div>
+                <div class="doc-content"></div>
+            </div>
+            <div id="doc2" class="doc">
+                <div class="doc-header">
+                    Doc2 Preview
+                    <button onclick="capture('doc2')">Capture to Doc2</button>
+                </div>
+                <div class="doc-content"></div>
+            </div>
+            <div class="upload">
+                <button onclick="upload()">Upload Selected</button>
+            </div>
+        </div>
+    </div>
+    <script src="kyc_app.js"></script>
+</body>
+</html>
