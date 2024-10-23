@@ -14,7 +14,7 @@
 
 1. **克隆這個倉庫**：
    ```bash
-   git clone https://github.com/yourusername/kyc-webcam.git
+   git clone git@github.com:Max-KNBA/kyc_webcam.git
    cd kyc-webcam
    ```
 
