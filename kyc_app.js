@@ -33,9 +33,13 @@ async function capture(docId) {
     canvas.width = video.videoHeight; // 交换宽度和高度以进行旋转
     canvas.height = video.videoWidth;
     const context = canvas.getContext('2d');
-    context.translate(canvas.width / 2, canvas.height / 2); // 将画布中心移动到中心点
-    context.rotate(Math.PI / 2); // 旋转画布90度
-    context.drawImage(video, -video.videoWidth / 2, -video.videoHeight / 2, video.videoWidth, video.videoHeight); // 绘制视频帧
+
+    // 将画布中心移动到中心点并旋转90度
+    context.translate(canvas.width / 2, canvas.height / 2);
+    context.rotate(Math.PI / 2);
+
+    // 绘制视频帧，调整位置以适应旋转
+    context.drawImage(video, -video.videoWidth / 2, -video.videoHeight / 2, video.videoWidth, video.videoHeight);
 
     const container = document.createElement('div'); // 创建容器元素
     container.style.display = 'flex';
