@@ -65,16 +65,17 @@ async function capture(docId) {
 }
 
 async function upload() {
-    const selectedImages = images.filter(image => image.selected).map(image => image.dataUrl); // 筛选选中的图像
+    const selectedImages = images.filter(image => image.selected); // 筛选选中的图像
     if (selectedImages.length > 0) {
         alert('Uploading selected documents...');
-        const formData = new FormData();
-        const uploadPromises = selectedImages.map((dataUrl, index) => {
-            const blob = dataURLToBlob(dataUrl); // 将数据URL转换为Blob
-            formData.append(`image${index}`, blob, `image${index}.png`); // 将Blob添加到FormData
+        const uploadPromises = selectedImages.map((image, index) => {
+            const blob = dataURLToBlob(image.dataUrl); // 将数据URL转换为Blob
+            const fileName = `${image.docId}_${index + 1}.png`; // 使用 docId_加上序号作为文件名
+            const formData = new FormData();
+            formData.append(`file`, blob, fileName); // 将Blob添加到FormData
 
             // Return a promise for each upload
-            return fetch('https://yourlink/upload/api', {
+            return fetch('/upload', { // 修改为本机的 /upload 路径
                 method: 'POST',
                 body: formData
             }).then(response => response.json());
