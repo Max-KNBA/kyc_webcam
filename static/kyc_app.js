@@ -68,9 +68,11 @@ async function upload() {
     const selectedImages = images.filter(image => image.selected); // 筛选选中的图像
     if (selectedImages.length > 0) {
         alert('Uploading selected documents...');
-        const uploadPromises = selectedImages.map((image, index) => {
+        const docCounts = { doc1: 0, doc2: 0 }; // 计数器对象
+        const uploadPromises = selectedImages.map((image) => {
             const blob = dataURLToBlob(image.dataUrl); // 将数据URL转换为Blob
-            const fileName = `${image.docId}_${index + 1}.png`; // 使用 docId_加上序号作为文件名
+            docCounts[image.docId] += 1; // 增加对应文档的计数
+            const fileName = `${image.docId}_${docCounts[image.docId]}.png`; // 使用 docId_加上计数作为文件名
             const formData = new FormData();
             formData.append(`file`, blob, fileName); // 将Blob添加到FormData
 
